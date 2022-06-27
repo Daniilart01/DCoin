@@ -5,8 +5,8 @@ import java.security.interfaces.DSAPublicKey;
 
 public class DSAKeyPair {
     private final static int KEY_SIZE = 1024;
-    public final DSAPrivateKey privateKey;
-    public final DSAPublicKey publicKey;
+    private final DSAPrivateKey privateKey;
+    private final DSAPublicKey publicKey;
 
     private DSAKeyPair(DSAPrivateKey privateKey, DSAPublicKey publicKey) {
         this.privateKey = privateKey;
@@ -19,5 +19,13 @@ public class DSAKeyPair {
         generator.initialize(KEY_SIZE,secureRandom);
         KeyPair pair = generator.generateKeyPair();
         return new DSAKeyPair((DSAPrivateKey)pair.getPrivate(), (DSAPublicKey )pair.getPublic());
+    }
+
+    public DSAPrivateKey getPrivateKey() {
+        return privateKey;
+    }
+
+    public DSAPublicKey getPublicKey() {
+        return publicKey;
     }
 }
