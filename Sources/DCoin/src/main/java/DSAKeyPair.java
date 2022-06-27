@@ -13,12 +13,18 @@ public class DSAKeyPair {
         this.publicKey = publicKey;
     }
 
-    public static DSAKeyPair getKeyPair() throws NoSuchAlgorithmException {
-        KeyPairGenerator generator = KeyPairGenerator.getInstance("DSA");
-        SecureRandom secureRandom = SecureRandom.getInstance("SHA1PRNG");
-        generator.initialize(KEY_SIZE,secureRandom);
-        KeyPair pair = generator.generateKeyPair();
-        return new DSAKeyPair((DSAPrivateKey)pair.getPrivate(), (DSAPublicKey )pair.getPublic());
+    public static DSAKeyPair getKeyPair(){
+        try {
+            KeyPairGenerator generator = KeyPairGenerator.getInstance("DSA");
+            SecureRandom secureRandom = SecureRandom.getInstance("SHA1PRNG");
+            generator.initialize(KEY_SIZE, secureRandom);
+            KeyPair pair = generator.generateKeyPair();
+            return new DSAKeyPair((DSAPrivateKey) pair.getPrivate(), (DSAPublicKey) pair.getPublic());
+        }
+        catch (Exception e){
+            System.err.println("Error while creating keyPair");
+            return null;
+        }
     }
 
     public DSAPrivateKey getPrivateKey() {
