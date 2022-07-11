@@ -1,6 +1,7 @@
 import java.security.interfaces.DSAPublicKey;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Account {
@@ -62,6 +63,23 @@ public class Account {
     }
     public static String dataToStringForSign(Account account1, Account account2, int amount){
         return account1.toString()+account2.toString()+amount;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Account account = (Account) o;
+        return balance == account.balance && accountId.equals(account.accountId) && wallet.equals(account.wallet);
+    }
+
+    public String getAccountId() {
+        return accountId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(accountId, wallet, balance);
     }
 
     @Override

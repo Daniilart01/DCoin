@@ -22,8 +22,7 @@ public class DSAKeyPair {
             return new DSAKeyPair((DSAPrivateKey) pair.getPrivate(), (DSAPublicKey) pair.getPublic());
         }
         catch (Exception e){
-            System.err.println("Error while creating keyPair");
-            return null;
+            throw new RuntimeException("Error while creating keyPair");
         }
     }
 

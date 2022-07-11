@@ -38,4 +38,12 @@ public class Operation {
     public String getOperationID() {
         return operationID;
     }
+
+    public Account getSender() {
+        return sender;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
 }
